@@ -112,6 +112,8 @@ class toonie(Coin):
 
 #Creates a cheat coin which falls "Heads" %75 of the time
 class cheatCoin(Coin):
+
+    #Cheat coin constructor makes it look like a toonie
     def __init__(self):
         data = {
             "original_color": "mixed",
