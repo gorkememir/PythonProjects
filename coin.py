@@ -25,6 +25,9 @@ class Coin:
     def __del__(self):
         print("COIN GONE YO!")
 
+    def __str__(self):
+        print(" ".format(type(self)))
+
     def rust(self):
         self.color = self.rusty_color
 
@@ -35,18 +38,26 @@ class Coin:
         options = [True, False]
         self.heads = random.choice(options)
 
+    def makeAmazing(self):
+        self.isAmazing = True
+        if self.value == self.original_value:
+            self.value = self.value * 1.25
+
+    def delAmazing(self):
+        self.isAmazing = False
+        if self.value != self.original_value:
+            self.value = self.value / 1.25
+
 
 class dime(Coin):
-    def __init__(self, amIrare = False):
+    def __init__(self, amIamazing = False):
         data = {
             "original_color": "white",
             "dirty_color": "black",
             "original_value": 0.10
         }
-        super().__init__(amazing = amIrare, **data)
+        super().__init__(amazing = amIamazing, **data)
 
-    def makeAmazing(self):
-        super().__init__(amazing=True)
 
 # class quarter:
 #   def __init__(self):
