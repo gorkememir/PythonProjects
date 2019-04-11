@@ -1,8 +1,9 @@
 import random
 
-
+#Create Main Class Coin
 class Coin:
 
+    #Constructor for main class
     def __init__(self, amazing=False, clean=True, heads=True, **feedData):
 
         for k, v in feedData.items():
@@ -22,36 +23,43 @@ class Coin:
         else:
             self.color = self.rusty_color
 
+    #Delete Function
     def __del__(self):
         print("COIN GONE YO!")
 
+    #Make the object printable
     def __str__(self):
         if self.original_value >= 1:
             return("${} coin").format(int(self.original_value))
         else:
             return("¢{} coin").format(int(self.original_value * 100))
 
+    #Rust the object
     def rust(self):
         self.color = self.rusty_color
 
+    #Clean the object
     def clean(self):
         self.color = self.original_color
 
+    #Flip the coin
     def flip(self):
         options = [True, False]
         self.heads = random.choice(options)
 
+    #Make coin an amazing coin (Value * 1.25)
     def makeAmazing(self):
         self.isAmazing = True
         if self.value == self.original_value:
             self.value = self.value * 1.25
 
+    #Make coin un-amazing
     def delAmazing(self):
         self.isAmazing = False
         if self.value != self.original_value:
             self.value = self.value / 1.25
 
-
+#Start of sub-classes, inheriting main Coin class.
 class nickel(Coin):
     def __init__(self, amIamazing = False):
         data = {
@@ -101,6 +109,22 @@ class toonie(Coin):
             "weight": 0.4
         }
         super().__init__(amazing = amIamazing, **data)
+
+#Creates a cheat coin which falls "Heads" %75 of the time
+class cheatCoin(Coin):
+    def __init__(self):
+        data = {
+            "original_color": "mixed",
+            "rusty_color": "mixedish",
+            "original_value": 2.0,
+            "weight": 0.4
+        }
+        super().__init__(**data)
+
+    #Example for polymorphism. This coin flips differently.
+    def flip(self):
+        options = [True, True, True, False]
+        self.heads = random.choice(options)
 
 
 coins = [nickel(), dime(), quarter(), loonie(), toonie()]
