@@ -47,13 +47,13 @@ class Coin:
         options = [True, False]
         self.isHeads = random.choice(options)
 
-    #Make coin an amazing coin (Value * 1.25)
+    #Check if the coin is amazing, if yes, make it amazing (Value * 1.25)
     def makeAmazing(self):
         self.isAmazing = True
         if self.value == self.original_value:
             self.value = self.value * 1.25
 
-    #Make coin un-amazing
+    #Check if the coin is amazing, if yes, make it un-amazing
     def delAmazing(self):
         self.isAmazing = False
         if self.value != self.original_value:
