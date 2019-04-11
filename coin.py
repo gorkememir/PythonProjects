@@ -45,7 +45,7 @@ class Coin:
     #Flip the coin
     def flip(self):
         options = [True, False]
-        self.heads = random.choice(options)
+        self.isHeads = random.choice(options)
 
     #Make coin an amazing coin (Value * 1.25)
     def makeAmazing(self):
@@ -124,11 +124,13 @@ class cheatCoin(Coin):
     #Example for polymorphism. This coin flips differently.
     def flip(self):
         options = [True, True, True, False]
-        self.heads = random.choice(options)
+        self.isHeads = random.choice(options)
 
+#Create a list of coins
+coins = [nickel(), dime(), quarter(), loonie(), toonie(), cheatCoin()]
 
-coins = [nickel(), dime(), quarter(), loonie(), toonie()]
+#Print attributes of all the coins in a loop
 for c in coins:
-    cargs = (c, c.value, c.rusty_color, c.original_color, c.weight)
-    output = "{}, Value: {}, Rusty Color: {}, Original Color: {}, Weight: {}".format(*cargs)
+    cargs = (c, c.value, c.rusty_color, c.original_color, c.weight, c.isHeads, c.isAmazing, c.isClean)
+    output = "{}, Value: {}, Rusty Color: {}, Original Color: {}, Weight: {}. Heads?: {}, Amazing?: {}, Clean?: {}".format(*cargs)
     print(output)
