@@ -26,7 +26,10 @@ class Coin:
         print("COIN GONE YO!")
 
     def __str__(self):
-        print(" ".format(type(self)))
+        if self.original_value >= 1:
+            return("${} coin").format(int(self.original_value))
+        else:
+            return("¢{} coin").format(int(self.original_value * 100))
 
     def rust(self):
         self.color = self.rusty_color
@@ -49,21 +52,59 @@ class Coin:
             self.value = self.value / 1.25
 
 
-class dime(Coin):
+class nickel(Coin):
     def __init__(self, amIamazing = False):
         data = {
+            "original_color": "yellow",
+            "rusty_color": "blackish",
+            "original_value": 0.05,
+            "weight": 0.05
+        }
+        super().__init__(amazing = amIamazing, **data)
+
+class dime(Coin):
+    def __init__(self):
+        data = {
             "original_color": "white",
-            "dirty_color": "black",
-            "original_value": 0.10
+            "rusty_color": "yellowish",
+            "original_value": 0.10,
+            "weight": 0.1
+        }
+        super().__init__(**data)
+
+class quarter(Coin):
+    def __init__(self, amIamazing = False):
+        data = {
+            "original_color": "gray",
+            "rusty_color": "blackish",
+            "original_value": 0.25,
+            "weight": 0.15
+        }
+        super().__init__(amazing = amIamazing, **data)
+
+class loonie(Coin):
+    def __init__(self, amIamazing = False):
+        data = {
+            "original_color": "copper",
+            "rusty_color": "orangeish",
+            "original_value": 1.0,
+            "weight": 0.3
+        }
+        super().__init__(amazing = amIamazing, **data)
+
+class toonie(Coin):
+    def __init__(self, amIamazing = False):
+        data = {
+            "original_color": "mixed",
+            "rusty_color": "mixedish",
+            "original_value": 2.0,
+            "weight": 0.4
         }
         super().__init__(amazing = amIamazing, **data)
 
 
-# class quarter:
-#   def __init__(self):
-
-# class loonie:
-#   def __init__(self):
-
-# class toonie:
-#   def __init__(self):
+coins = [nickel(), dime(), quarter(), loonie(), toonie()]
+for c in coins:
+    cargs = (c, c.value, c.rusty_color, c.original_color, c.weight)
+    output = "{}, Value: {}, Rusty Color: {}, Original Color: {}, Weight: {}".format(*cargs)
+    print(output)
