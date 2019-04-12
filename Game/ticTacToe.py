@@ -1,5 +1,7 @@
+#Create an empty game board
 plane = ["  " for i in range(0,9)]
 
+#Print the current state of the game board
 def printBoard():
 
     row1list = [plane[x] for x in range(0,3)]
@@ -16,6 +18,8 @@ def printBoard():
     print(row3)
     print(" ")
 
+#Take input from the player who has the turn, update the board. If player wants to play on a filled spot,
+# get angry and waste his turn.
 def playerMove(icon):
 
     if icon == "X":
@@ -33,6 +37,7 @@ def playerMove(icon):
         print()
         print("Are you kidding me?")
 
+#Check if we have a winner, if yes, print who won the game and end.
 def winnerCheck(icon):
     if (plane[0] == icon and plane[1] == icon and plane[2] == icon) or \
         (plane[3] == icon and plane[4] == icon and plane[5] == icon) or \
@@ -46,14 +51,19 @@ def winnerCheck(icon):
     else:
         return False
 
+#Check if we have a draw, if yes, print it and end the game.
 def drawCheck():
     if "  " not in plane:
         return True
     else:
         return False
 
+#Game loop starts here
 while True:
+    #Print the current board
     printBoard()
+
+    #Take input from player 1, check if the game is over.
     playerMove("X")
     if winnerCheck("X"):
         print("Player 1 WINS!")
@@ -62,6 +72,8 @@ while True:
         print("It is a draw!")
         break
     printBoard()
+
+    #Take input from player 2, check if the game is over.
     playerMove("O")
     if winnerCheck("O"):
         print("Player 2 WINS!")
