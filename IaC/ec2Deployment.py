@@ -8,7 +8,6 @@ myUbuntuInstance = ec2object.create_instances(
     MaxCount = 1,
     InstanceType = 't2.nano',
     KeyName = 'btcProj',
-
     NetworkInterfaces = [
         {
             'DeviceIndex' : 0,
@@ -18,7 +17,6 @@ myUbuntuInstance = ec2object.create_instances(
             'SubnetId' : 'subnet-0f1119801c607d988',
         },
     ],
-
     TagSpecifications = [
         {
             'ResourceType': 'instance',
