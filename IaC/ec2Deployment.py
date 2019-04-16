@@ -8,5 +8,26 @@ myUbuntuInstance = ec2object.create_instances(
     MaxCount = 1,
     InstanceType = 't2.nano',
     KeyName = 'btcProj',
-    SubnetId = 'subnet-0f1119801c607d988'
+
+    NetworkInterfaces = [
+        {
+            'DeviceIndex' : 0,
+            'AssociatePublicIpAddress': True,
+            'DeleteOnTermination': True,
+            'Description': 'Primary network interface',
+            'SubnetId' : 'subnet-0f1119801c607d988',
+        },
+    ],
+
+    TagSpecifications = [
+        {
+            'ResourceType': 'instance',
+            'Tags': [
+                {
+                    "Key": "Name",
+                    "Value": "autoDeployedBtcPoller",
+                },
+            ],
+        },
+    ],
 )
